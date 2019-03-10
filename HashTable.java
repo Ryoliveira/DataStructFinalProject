@@ -110,8 +110,8 @@ public class HashTable<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * removes the key t from the Table calls the hash method on the key to
-	 * determine correct placement has no effect if t is not in the Table
+	 * retrieves the key t from the Table calls the hash method on the key to
+	 * determine correct placement. returns given object if not found.
 	 * 
 	 * @param t the object to be retrieved
 	 * @return t retrieved object if found. Otherwise will return provided object
