@@ -1,10 +1,3 @@
-/**
- * Defines the a generic doubly-linked list class
- * @author Ryan Oliveira
- * @author Tina Nemati
- * CIS 22C, Lab 4
- */
-
 import java.util.NoSuchElementException;
 
 public class List<T extends Comparable<T>> {
