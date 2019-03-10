@@ -29,6 +29,18 @@ public class Customer implements Comparable<Customer> {
     	zip = uZip;
     	List<Order> orders = new List<Order>();
     }
+	
+        /**
+	 * Secondary constructor for the Customer.java class. Initializes the Customer with first and last name
+	 * for data storage searching purposes.
+	 * 
+	 * @param uFirst Customer first name
+	 * @param uLast Customer last name
+	 */
+    public Customer(String ufirst, String uLast) {
+    	this(ufirst, uLast, "", "", "", 0);
+    }
+    
     
     /**
      * @return first_name First name of customer
