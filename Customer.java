@@ -29,8 +29,8 @@ public class Customer implements Comparable<Customer> {
     	zip = uZip;
     	List<Order> orders = new List<Order>();
     }
-	
-        /**
+    
+    /**
 	 * Secondary constructor for the Customer.java class. Initializes the Customer with first and last name
 	 * for data storage searching purposes.
 	 * 
@@ -41,6 +41,7 @@ public class Customer implements Comparable<Customer> {
     	this(ufirst, uLast, "", "", "", 0);
     }
     
+    /* Accessors */
     
     /**
      * @return first_name First name of customer
@@ -48,6 +49,47 @@ public class Customer implements Comparable<Customer> {
 	public String getFirst_name() {
 		return first_name;
 	}
+	
+	/**
+     * @return last_name Last name of customer
+     */
+	public String getLast_name() {
+		return last_name;
+	}
+	
+    /**
+     * @return address Customer's address of residence
+     */
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getFullAddress() {
+		return address + ", " + city + ", " + state;
+	}
+	
+    /**
+     * @return zip Customer's current zip code of residence
+     */
+	public int getZip() {
+		return zip;
+	}
+	
+	/**
+     * @return city Customer's current city of residence
+     */
+	public String getCity() {
+		return city;
+	}
+	
+	 /**
+     * @return state Customer's current state of residence
+     */
+	public String getState() {
+		return state;
+	}
+	
+	/* Mutators */
 
 	/**
 	 * Sets the first name of customer
@@ -58,13 +100,6 @@ public class Customer implements Comparable<Customer> {
 		this.first_name = first_name;
 	}
 	
-    /**
-     * @return last_name Last name of customer
-     */
-	public String getLast_name() {
-		return last_name;
-	}
-
 	/**
 	 * Sets the last name of customer
 	 * 
@@ -72,17 +107,6 @@ public class Customer implements Comparable<Customer> {
 	 */
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
-	}
-
-    /**
-     * @return address Customer's address of residence
-     */
-	public String getAddress() {
-		return address;
-	}
-	
-	public String getFullAddress() {
-		return address + ", " + city + ", " + state;
 	}
 
 	/**
@@ -94,13 +118,6 @@ public class Customer implements Comparable<Customer> {
 		this.address = address;
 	}
 
-    /**
-     * @return city Customer's current city of residence
-     */
-	public String getCity() {
-		return city;
-	}
-
 	/**
 	 * Sets the customer's city of residence
 	 * 
@@ -110,13 +127,6 @@ public class Customer implements Comparable<Customer> {
 		this.city = city;
 	}
 	
-    /**
-     * @return state Customer's current state of residence
-     */
-	public String getState() {
-		return state;
-	}
-
 	/**
 	 * Sets the state of customer
 	 * 
@@ -126,21 +136,16 @@ public class Customer implements Comparable<Customer> {
 		this.state = state;
 	}
 
-    /**
-     * @return zip Customer's current zip code of residence
-     */
-	public int getZip() {
-		return zip;
-	}
-
 	/**
-	 * Sets zip of customer.
+	 * Sets zip code of customer.
 	 * 
-	 * @param zip Zip to be set
+	 * @param zip Zip code to be set
 	 */
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
+	
+	/* Order List Operations */
 	
     /**
      * @return orders Customer's current list of orders
@@ -148,6 +153,30 @@ public class Customer implements Comparable<Customer> {
 	public List<Order> getOrders() {
 		return orders;
 	}
+	
+	/**
+	 * Add order to customer orders
+	 * @param newOrder Order to be added
+	 */
+	public void addOrder(Order newOrder) {
+		orders.addLast(newOrder);
+	}
+	
+	/**
+	 * Delete order from customer orders
+	 * @param OrdToDel Order to delete
+	 */
+	public void removeOrder(Order OrdToDel) {
+		orders.pointIterator();
+		while(!orders.offEnd()) {
+			if(orders.getIterator() == OrdToDel) {
+				orders.removeIterator();
+			}
+			orders.advanceIterator();
+		}
+	}
+	
+	/* Additional Methods */
 	
 	/**
 	 * Returns customer information in a formatted string
