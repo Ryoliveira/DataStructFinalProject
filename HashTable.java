@@ -5,7 +5,7 @@ public class HashTable<T extends Comparable<T>> {
 	private ArrayList<List<T>> Table;
 
 	/**
-	 * Constructor for the Hash.java class. Initializes the Table to be sized
+	 * Constructor for the HashTable.java class. Initializes the Table to be sized
 	 * according to value passed in as a parameter Inserts size empty Lists into the
 	 * table. Sets numElements to 0
 	 * 
@@ -73,7 +73,7 @@ public class HashTable<T extends Comparable<T>> {
 		return -1;
 	}
 
-	/** Manipulation Procedures */
+	/**Table Manipulation*/
 
 	/**
 	 * Inserts a new key in the Table calls the hash method to determine placement
@@ -84,6 +84,12 @@ public class HashTable<T extends Comparable<T>> {
 		int index = hash(t);
 		Table.get(index).addLast(t);
 		numElements++;
+		int limit = Table.size() / 2;
+		if(numElements > limit) {
+			int newSize = Table.size()*2;
+			System.out.println("Resizing Hashtable");
+			resize(newSize);
+		}
 	}
 
 	/**
@@ -102,45 +108,75 @@ public class HashTable<T extends Comparable<T>> {
 			numElements--;
 		}
 	}
+	
+	/**
+	 * removes the key t from the Table calls the hash method on the key to
+	 * determine correct placement has no effect if t is not in the Table
+	 * 
+	 * @param t the object to be retrieved
+	 * @return t retrieved object if found. Otherwise will return provided object
+	 */
+	public T getObject(T t) {
+		int hashCode = hash(t);
+		int searchRes = Table.get(hashCode).linearSearch(t);
+		if (searchRes != -1) {
+			Table.get(hashCode).pointIterator();
+			Table.get(hashCode).moveToIndex(searchRes);
+			t = Table.get(hashCode).getIterator();
+		}
+		return t;
+	}
+	
+	/**
+	 * Resizes the hashTable to create less collisions.
+	 * 
+	 * @param newSize the new size of the hashTable
+	 */
+	
+	private void resize(int newSize) {
+		ArrayList<List<T>> temp = Table;
+		Table = new ArrayList<List<T>>();
+		for (int i = 0; i < newSize; i++) {
+			Table.add(new List<T>());
+		}
+		numElements = 0;
+		for(List<T> list: temp) {
+			list.pointIterator();
+			while(!list.offEnd()) {
+				T val = list.getIterator();
+				insert(val);
+				list.advanceIterator();
+			}
+		}
+	}
 
-	/** Additional Methods */
+	/** Print Methods */
 
 	/**
 	 * Prints all the keys at a specified bucket in the Table. Each key displayed on
-	 * its own line, with a blank line separating each key Above the keys, prints
-	 * the message "Printing bucket #<bucket>:" Note that there is no <> in the
-	 * output
+	 * its own line, with a blank line separating each key Above the keys
 	 * 
 	 * @param bucket the index in the Table
 	 */
 	public void printBucket(int bucket) {
-		System.out.println("Printing bucket #" + bucket + ":\n");
 		List<T> curBucket = Table.get(bucket);
 		curBucket.pointIterator();
 		while (!curBucket.offEnd()) {
 			System.out.println(Table.get(bucket).getIterator().toString() + "\n");
 			Table.get(bucket).advanceIterator();
 		}
-		System.out.println("\n");
 	}
 
 	/**
-	 * Prints the first key at each bucket along with a count of the total keys with
-	 * the message "+ <count> -1 more at this bucket." Each bucket separated with
-	 * two blank lines. When the bucket is empty, prints the message "This bucket is
-	 * empty." followed by two blank lines
+	 * Prints out every item in the list.
 	 */
 	public void printTable() {
-		int count = 0;
+		int bucketNum = 0;
 		for (List<T> bucket : Table) {
-			System.out.println("Bucket: " + count);
-			if (bucket.isEmpty()) {
-				System.out.println("This bucket is empty\n\n");
-			} else {
-				System.out.println(bucket.getFirst());
-				System.out.println("+ " + (bucket.getLength() - 1) + " more at this bucket.\n\n");
+			if (!bucket.isEmpty()) {
+				printBucket(bucketNum);
 			}
-			count++;
+			bucketNum++;
 		}
 	}
 }
