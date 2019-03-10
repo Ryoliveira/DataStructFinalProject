@@ -87,7 +87,6 @@ public class HashTable<T extends Comparable<T>> {
 		int limit = Table.size() / 2;
 		if(numElements > limit) {
 			int newSize = Table.size()*2;
-			System.out.println("Resizing Hashtable");
 			resize(newSize);
 		}
 	}
