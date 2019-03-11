@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class HashTable<T extends Comparable<T>> {
 	private int numElements;
+	private int limit;
 	private ArrayList<List<T>> Table;
 
 	/**
@@ -17,6 +18,7 @@ public class HashTable<T extends Comparable<T>> {
 			Table.add(new List<T>());
 		}
 		numElements = 0;
+	    limit = Table.size() / 2;
 	}
 
 	/** Accessors */
@@ -84,7 +86,6 @@ public class HashTable<T extends Comparable<T>> {
 		int index = hash(t);
 		Table.get(index).addLast(t);
 		numElements++;
-		int limit = Table.size() / 2;
 		if(numElements > limit) {
 			int newSize = Table.size()*2;
 			resize(newSize);
@@ -138,6 +139,7 @@ public class HashTable<T extends Comparable<T>> {
 		for (int i = 0; i < newSize; i++) {
 			Table.add(new List<T>());
 		}
+		limit = newSize/2;
 		numElements = 0;
 		for(List<T> list: temp) {
 			list.pointIterator();
