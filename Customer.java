@@ -1,4 +1,8 @@
-
+/**
+* Customer.java
+* @author Ryan Oliveira 
+* CIS 22C
+*/
 public class Customer implements Comparable<Customer> {
 
 	private String first_name;

@@ -1,4 +1,9 @@
 import java.util.ArrayList;
+/**
+* HashTable.java
+* @author Ryan Oliveira 
+* CIS 22C
+*/
 
 public class HashTable<T extends Comparable<T>> {
 	private int numElements;
