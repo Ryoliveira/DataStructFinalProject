@@ -5,8 +5,11 @@
 */
 public class Customer implements Comparable<Customer> {
 
-	private String first_name;
-	private String last_name;
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String password;
+	private String email;
 	private String address;
     private String city;
     private String state;
@@ -19,14 +22,19 @@ public class Customer implements Comparable<Customer> {
 	 * 
 	 * @param uFirst Customer first name
 	 * @param uLast Customer last name
+	 * @param uUserName Customer userName
+	 * @param uPassword Customer password
 	 * @param uAddress Customer address
 	 * @param uCity Customer city
 	 * @param uState Customer state
 	 * @param uZip Customer zip code
 	 */
-    public Customer(String uFirst, String uLast, String uAddress, String uCity, String uState, int uZip) {
-    	first_name = uFirst;
-    	last_name = uLast;
+    public Customer(String uFirst, String uLast, String uUserName, String uPassword, String uEmail, String uAddress, String uCity, String uState, int uZip) {
+    	firstName = uFirst;
+    	lastName = uLast;
+    	userName = uUserName;
+    	password = uPassword;
+    	email = uEmail;
     	address = uAddress;
     	city = uCity;
     	state = uState;
@@ -42,23 +50,44 @@ public class Customer implements Comparable<Customer> {
 	 * @param uLast Customer last name
 	 */
     public Customer(String ufirst, String uLast) {
-    	this(ufirst, uLast, "", "", "", 0);
+    	this(ufirst, uLast, "", "", "", "", "", "", 0);
     }
     
     /* Accessors */
     
     /**
-     * @return first_name First name of customer
+     * @return firstName First name of customer
      */
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 	
 	/**
-     * @return last_name Last name of customer
+     * @return lastName Last name of customer
      */
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
+	}
+	
+	/**
+     * @return userName User name of customer
+     */
+	public String getUserName() {
+		return userName;
+	}
+	
+	/**
+     * @return password Password of customer
+     */
+	public String getPassword() {
+		return password;
+	}
+	
+	/**
+     * @return email Email of customer
+     */
+	public String getEmail() {
+		return email;
 	}
 	
     /**
@@ -100,8 +129,8 @@ public class Customer implements Comparable<Customer> {
 	 * 
 	 * @param first_name Name to be set
 	 */
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String first_name) {
+		this.firstName = first_name;
 	}
 	
 	/**
@@ -109,8 +138,35 @@ public class Customer implements Comparable<Customer> {
 	 * 
 	 * @param last_name Name to be set
 	 */
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String last_name) {
+		this.lastName = last_name;
+	}
+	
+	/**
+	 * Sets the user name of the the customer
+	 * 
+	 * @param userName User name to be set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	/**
+	 * Sets the password of the the customer
+	 * 
+	 * @param password Password to be set
+	 */
+	public void setPassWord(String password) {
+		this.password = password;
+	}
+	
+	/**
+	 * Sets the password of the the customer
+	 * 
+	 * @param email Email to be set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**
@@ -189,7 +245,7 @@ public class Customer implements Comparable<Customer> {
 	 */
 	@Override
 	public String toString() {
-		return "Name: " + first_name + " " + last_name
+		return "Name: " + firstName + " " + lastName
 				+ "\nAddress: " + address
 			    + "\nCity: " + city
 			    + "\nState: " + state
@@ -205,7 +261,7 @@ public class Customer implements Comparable<Customer> {
 	public int hashCode() {
 		int sum = 0;
 		final int prime = 31;
-		String key = first_name + last_name;
+		String key = firstName + lastName;
 		for(int i=0;i<key.length();i++) {
 			sum += prime * key.charAt(i);
 		}
@@ -227,15 +283,15 @@ public class Customer implements Comparable<Customer> {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (first_name == null) {
-			if (other.first_name != null)
+		if (firstName == null) {
+			if (other.firstName != null)
 				return false;
-		} else if (!first_name.equals(other.first_name))
+		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (last_name == null) {
-			if (other.last_name != null)
+		if (lastName == null) {
+			if (other.lastName != null)
 				return false;
-		} else if (!last_name.equals(other.last_name))
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
 	}
@@ -252,11 +308,11 @@ public class Customer implements Comparable<Customer> {
 		if(this.equals(otherCust)) {
 			return 0;
 		}
-		else if(!this.first_name.equals(otherCust.first_name)) {
-			return this.first_name.compareTo(otherCust.first_name);
+		else if(!this.firstName.equals(otherCust.firstName)) {
+			return this.firstName.compareTo(otherCust.firstName);
 		}
 		else {
-			return this.last_name.compareTo(otherCust.last_name);
+			return this.lastName.compareTo(otherCust.lastName);
 		}
 	}
 }
