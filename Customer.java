@@ -24,6 +24,7 @@ public class Customer implements Comparable<Customer> {
 	 * @param uLast Customer last name
 	 * @param uUserName Customer userName
 	 * @param uPassword Customer password
+	 * @param uEmail Customer email
 	 * @param uAddress Customer address
 	 * @param uCity Customer city
 	 * @param uState Customer state
