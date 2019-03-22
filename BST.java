@@ -200,60 +200,6 @@ public class BST {
 		}
 	}
 
-	/**
-	 * Determines whether two trees store 
-	 * identical data in the same structural
-	 * position in the tree
-	 * 
-	 * @param o another Object
-	 * @return whether the two trees are equal
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		} else if (!(o instanceof BST)) {
-			return false;
-		}
-		BST t = (BST) o;
-		if (getSize() != t.getSize()) {
-			return false;
-		}
-		return equals(root, t.root);
-	}
-
-	/**
-	 * Helper method for the equals method
-	 * 
-	 * @param node1 the node of the first bst
-	 * @param node2 the node of the second bst
-	 * @return whether the two trees contain 
-	 * identical data stored in the same structural 
-	 * position inside the trees
-	 */
-	private boolean equals(Node node1, Node node2) {
-		if(node1 == null && node2 == null) {
-			return true;
-		}
-		else if (node1 == null && node2 != null) {
-			return false;
-		}
-		else if (node1 != null && node2 == null) {
-			return false;
-		}
-		else if (!(node1.data.equals(node2.data))) {
-			return false;
-		}
-		else if (!(equals(node1.left, node2.left))) {
-			return false;
-		} else if (!(equals(node1.right, node2.right))) {
-			return false;
-		}
-		
-		return true;
-		
-	}
-
 	/*** MUTATORS ***/
 
 	/**
@@ -300,8 +246,6 @@ public class BST {
 
 	}
 
-	/*** MUTATORS ***/
-
 	/**
 	 * Inserts a new node in the tree 
 	 * using the secondary key
@@ -328,7 +272,7 @@ public class BST {
 	 * in which to insert
 	 */
 	private void insertS(Song s, Node node) {
-		if (s.getArtist().compareTo(node.data.getArtist()) == 0 && s.getTitle().compareTo(node.data.getTitle()) == 0) {
+		if (s.getArtist().compareTo(node.data.getArtist()) == 0) {
 			return;
 		}else if (s.getArtist().compareTo(node.data.getArtist()) < 0) {
 			if (node.left == null) {
