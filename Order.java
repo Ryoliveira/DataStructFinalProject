@@ -1,22 +1,29 @@
-import java.util.Date;
+import java.util.Calendar;
 
-public class Order {
-	private String orderNum;
+public class Order implements Comparable<Order>{
+	private int orderNum;
 	private int numItems;
 	private int status;
-	private Date date;
+	private Calendar cal;
+
+	public Order() {
+		orderNum = 1000;
+		numItems = 1000;
+		status = 1000;
+		cal = null;
+	}
 	
-	public Order(String orderNum, int numItems, int status, Date date) {
+	public Order(int orderNum, int numItems, int status, Calendar cal) {
 		this.orderNum = orderNum;
 		this.numItems = numItems;
 		this.status = status;
-		this.date = date;
+		this.cal = cal;
 	}
-	public String getOrderNum() {
+	public int getOrderNum() {
 		return orderNum;
 	}
 
-	public void setOrderNum(String orderNum) {
+	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
 
@@ -35,16 +42,16 @@ public class Order {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	public Date getDate() {
-		return date;
+	
+	public Calendar getCal() {
+		return cal;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCal(Calendar cal) {
+		this.cal = cal;
 	}
 	
-	public boolean equals(Order o) {
+	public boolean equals(Object o) {
         if(o == this) {
         	return true;
         }
@@ -64,14 +71,14 @@ public class Order {
 		if(this.equals(o)) {
 			return 0;
 		}
-		else if(this.getStatus() > o.getStatus()){
+		else if(this.getStatus() < o.getStatus()){
 			return 1;
 		}
-		else if(this.getStatus() < o.getStatus()){
+		else if(this.getStatus() > o.getStatus()){
 			return -1;
 		}
 		else {
-			if(date.after(o.getDate())) {
+			if(this.cal.compareTo(o.cal)<0) {
 				return 1;
 			}
 			else {
