@@ -34,6 +34,7 @@ public class Interface {
 		}
 	}
 
+	
 	public void addEmployee() throws IOException {
 		File EmployeeInfile = new File("employeeDirectory.txt");
 		Scanner in = new Scanner(EmployeeInfile);
