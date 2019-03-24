@@ -86,4 +86,19 @@ public class Order implements Comparable<Order>{
 			}
 		}
 	}
+	public String toString() {
+		String result = "";
+		result = result + "Order Number: " + orderNum + "\n";
+		if(status == 1) {
+			result = result + "Order Status: Overnight Shipping"+ "\n";
+		}
+		else if(status == 2) {
+			result = result + "Order Status: Rush Shipping"+ "\n";
+		}
+		else{
+			result = result + "Order Status: Standard Shipping"+ "\n";
+		}
+		result = result + "Number of Items in the Order: " + numItems + "\n";
+		return result;
+	}
 }
