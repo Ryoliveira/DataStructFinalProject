@@ -119,17 +119,8 @@ public class Heap {
 
     public void displayArray(){
     	for(int i = 1; i<=heap_size; i++) {
-			System.out.println("Order Number: " + heap.get(i).getOrderNum());
-			if(heap.get(i).getStatus() == 1) {
-				System.out.println("Order Status: Overnight Shipping");
-			}
-			else if(heap.get(i).getStatus() == 2) {
-				System.out.println("Order Status: Rush Shipping");
-			}
-			else{
-				System.out.println("Order Status: Standard Shipping");
-			}
-			System.out.println("Number of Items in the Order: " + heap.get(i).getNumItems() + "\n");
+    		String s = heap.get(i).toString();
+    		System.out.println(s);
 		}
     }  
 }
