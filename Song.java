@@ -166,20 +166,18 @@ public class Song {
     		return false;
     	} else {
     		Song s = (Song) o;
-    		return this.getTitle().equals(s.getTitle()) && this.getArtist().equals(s.getArtist());
+    		return this.getTitle().equalsIgnoreCase(s.getTitle()) && this.getArtist().equalsIgnoreCase(s.getArtist());
     	}
     }
     
     /**
      * Compares two Song objects to determine ordering
+     * by comparing their title(primary key)
      * Returns 0 if the two items are equal
      * Return -1 if this Song's title comes alphabetically
      * before the other Song's title.
      * Returns 1 if the other Song's title comes
      * alphabetically before this song's title
-     * If the two song's titles are the same, will
-     * differentiate by artist's name (alphabetical
-     * comparison)
      * @param the other Song object to compare to this
      * @return 0 (same song), -1 (this song ordered first)
      * or 1 (the other song ordered first) 
@@ -188,15 +186,27 @@ public class Song {
     	if (this.equals(otherSong)) {
     		return 0;
     	} else {
-    		return this.getTitle().compareTo(otherSong.getTitle());
+    		return this.getTitle().compareToIgnoreCase(otherSong.getTitle());
     	} 
     }
     
+     /**
+     * Compares two Song objects to determine ordering 
+     * by comparing their artist(secondary key)
+     * Returns 0 if the two items are equal
+     * Return -1 if this Song's artist comes alphabetically
+     * before the other Song's artist.
+     * Returns 1 if the other Song's artist comes
+     * alphabetically before this Song's artist
+     * @param the other Song object to compare to this
+     * @return 0 (same song), -1 (this song ordered first)
+     * or 1 (the other song ordered first) 
+     */
     public int compareToArtist(Song otherSong) {
     	if (this.equals(otherSong)) {
     		return 0;
     	} else {
-    		return this.getArtist().compareTo(otherSong.getArtist());
+    		return this.getArtist().compareToIgnoreCase(otherSong.getArtist());
     	}
     }
 
