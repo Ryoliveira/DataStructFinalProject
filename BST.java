@@ -154,11 +154,11 @@ public class BST {
 		if (node == null) {
 			recentSearch = null;
 			return false;
-		} else if (node.data.getTitle().equals(title)) {
+		} else if (node.data.getTitle().equalsIgnoreCase(title)) {
 			recentSearch = node.data;
 			return true;
 		} else {
-			if (title.compareTo(node.data.getTitle()) < 0) {
+			if (title.compareToIgnoreCase(node.data.getTitle()) < 0) {
 				return searchP(title, node.left);
 			} else {
 				return searchP(title, node.right);
@@ -188,11 +188,11 @@ public class BST {
 		if (node == null) {
 			recentSearch = null;
 			return false;
-		} else if (node.data.getArtist().equals(artist)) {
+		} else if (node.data.getArtist().equalsIgnoreCase(artist)) {
 			recentSearch = node.data;
 			return true;
 		} else {
-			if (artist.compareTo(node.data.getArtist()) < 0) {
+			if (artist.compareToIgnoreCase(node.data.getArtist()) < 0) {
 				return searchS(artist, node.left);
 			} else {
 				return searchS(artist, node.right);
@@ -228,9 +228,9 @@ public class BST {
 	 * in which to insert
 	 */
 	private void insertP(Song s, Node node) {
-		if (s.getTitle().compareTo(node.data.getTitle()) == 0) {
+		if (s.getTitle().compareToIgnoreCase(node.data.getTitle()) == 0) {
 			return;
-		}else if (s.getTitle().compareTo(node.data.getTitle()) < 0) {
+		}else if (s.getTitle().compareToIgnoreCase(node.data.getTitle()) < 0) {
 			if (node.left == null) {
 				node.left = new Node(s);
 			} else {
@@ -272,9 +272,9 @@ public class BST {
 	 * in which to insert
 	 */
 	private void insertS(Song s, Node node) {
-		if (s.getArtist().compareTo(node.data.getArtist()) == 0) {
+		if (s.getArtist().compareToIgnoreCase(node.data.getArtist()) == 0) {
 			return;
-		}else if (s.getArtist().compareTo(node.data.getArtist()) < 0) {
+		}else if (s.getArtist().compareToIgnoreCase(node.data.getArtist()) < 0) {
 			if (node.left == null) {
 				node.left = new Node(s);
 			} else {
