@@ -1,23 +1,28 @@
+package Objects;
+
 import java.util.Calendar;
 
 public class Order implements Comparable<Order>{
 	private int orderNum;
 	private int numItems;
-	private int status;
+	private int priority;
 	private Calendar cal;
+	private String status;
 
 	public Order() {
 		orderNum = 1000;
 		numItems = 1000;
-		status = 1000;
+		priority = 1000;
 		cal = null;
+		status = null;
 	}
 	
-	public Order(int orderNum, int numItems, int status, Calendar cal) {
+	public Order(int orderNum, int numItems, int priority, Calendar cal, String status) {
 		this.orderNum = orderNum;
 		this.numItems = numItems;
-		this.status = status;
+		this.priority = priority;
 		this.cal = cal;
+		this.status = status;
 	}
 	public int getOrderNum() {
 		return orderNum;
@@ -34,13 +39,21 @@ public class Order implements Comparable<Order>{
 	public void setNumItems(int numItems) {
 		this.numItems = numItems;
 	}
-
-	public int getStatus() {
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 	
 	public Calendar getCal() {
@@ -71,10 +84,10 @@ public class Order implements Comparable<Order>{
 		if(this.equals(o)) {
 			return 0;
 		}
-		else if(this.getStatus() < o.getStatus()){
+		else if(this.getPriority() < o.getPriority()){
 			return 1;
 		}
-		else if(this.getStatus() > o.getStatus()){
+		else if(this.getPriority() > o.getPriority()){
 			return -1;
 		}
 		else {
@@ -89,14 +102,14 @@ public class Order implements Comparable<Order>{
 	public String toString() {
 		String result = "";
 		result = result + "Order Number: " + orderNum + "\n";
-		if(status == 1) {
-			result = result + "Order Status: Overnight Shipping"+ "\n";
+		if(priority == 1) {
+			result = result + "Priority: Overnight Shipping"+ "\n";
 		}
-		else if(status == 2) {
-			result = result + "Order Status: Rush Shipping"+ "\n";
+		else if(priority == 2) {
+			result = result + "Priority: Rush Shipping"+ "\n";
 		}
 		else{
-			result = result + "Order Status: Standard Shipping"+ "\n";
+			result = result + "Priority: Standard Shipping"+ "\n";
 		}
 		result = result + "Number of Items in the Order: " + numItems + "\n";
 		return result;
