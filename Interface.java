@@ -471,7 +471,7 @@ public class Interface {
 	public void cusMenu() {
 		Scanner sc = new Scanner(System.in);
 		int choice = 0;
-		while (choice != 4) {
+		while (choice != 3) {
 			System.out.println("**Main Menu**\n\n" + "1. Search/Display songs\n" + "2. Place an order\n"
 					+ "3. Exit program\n" + "\n");
 			System.out.print("Please enter your choice (1-3):");
@@ -522,7 +522,8 @@ public class Interface {
 				if (numElements >= 1) {
 					System.out.println("Select shipping speed: \n" + "1. Overnight\n" + "2.Rush\n" + "3.Standard\n");
 					System.out.print("Enter choice(1-3) :");
-					shippingSpeed = sc.nextInt();
+					String shippingSpeed_temp = sc.nextLine();
+					shippingSpeed= Integer.parseInt(shippingSpeed_temp);
 					orderNum();
 					placeOrder(numElements, shippingSpeed);
 
