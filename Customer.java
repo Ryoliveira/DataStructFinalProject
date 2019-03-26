@@ -1,15 +1,20 @@
+
 /**
 * Customer.java
 * @author Ryan Oliveira 
 * CIS 22C
 */
-public class Customer implements Comparable<Customer> {
+
+package Objects;
+
+import Objects.*;
+
+public class Customer extends List implements Comparable<Customer> {
 
 	private String firstName;
 	private String lastName;
-	private String userName;
-	private String password;
 	private String email;
+	private String password;
 	private String address;
     private String city;
     private String state;
@@ -30,12 +35,11 @@ public class Customer implements Comparable<Customer> {
 	 * @param uState Customer state
 	 * @param uZip Customer zip code
 	 */
-    public Customer(String uFirst, String uLast, String uUserName, String uPassword, String uEmail, String uAddress, String uCity, String uState, int uZip) {
+    public Customer(String uFirst, String uLast, String uEmail, String uPassword, String uAddress, String uCity, String uState, int uZip) {
     	firstName = uFirst;
     	lastName = uLast;
-    	userName = uUserName;
-    	password = uPassword;
     	email = uEmail;
+    	password = uPassword;
     	address = uAddress;
     	city = uCity;
     	state = uState;
@@ -51,7 +55,7 @@ public class Customer implements Comparable<Customer> {
 	 * @param uLast Customer last name
 	 */
     public Customer(String ufirst, String uLast) {
-    	this(ufirst, uLast, "", "", "", "", "", "", 0);
+    	this(ufirst, uLast, "", "", "", "", "", 0);
     }
     
     /* Accessors */
@@ -71,17 +75,16 @@ public class Customer implements Comparable<Customer> {
 	}
 	
 	/**
-     * @return userName User name of customer
-     */
-	public String getUserName() {
-		return userName;
-	}
-	
-	/**
      * @return password Password of customer
      */
 	public String getPassword() {
 		return password;
+	}
+	/**
+     * @return password Password of customer
+     */
+	public boolean checkPassword(String p) {
+		return p.equals(password);
 	}
 	
 	/**
@@ -141,15 +144,6 @@ public class Customer implements Comparable<Customer> {
 	 */
 	public void setLastName(String last_name) {
 		this.lastName = last_name;
-	}
-	
-	/**
-	 * Sets the user name of the the customer
-	 * 
-	 * @param userName User name to be set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 	
 	/**

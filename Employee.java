@@ -1,4 +1,4 @@
-
+package Objects;
 public class Employee {
 	
 	private String username;
@@ -11,10 +11,10 @@ public class Employee {
 		this.password= "None";		
 	}
 	
-	public Employee(String Username, String employeeId, String password) {
+	public Employee(String Username, String Id, String password) {
 		this.username= Username;
-		this.employeeID= employeeID;
-		this.password= this.password;
+		this.employeeID= Id;
+		this.password= password;
 			
 	}
 	
@@ -26,8 +26,16 @@ public class Employee {
 		return this.employeeID;
 	}
 	
+	public void setPassword(String password) {
+		this.password= password;
+	}
+	
 	public boolean isPassword(String password) {
 		return password.equals(this.password);
+	}
+	
+	@Override public String toString() {
+		return ""+ this.username;
 	}
 
 }
