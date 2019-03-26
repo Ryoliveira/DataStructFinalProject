@@ -1,3 +1,5 @@
+package Objects;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -11,7 +13,7 @@ import java.util.Scanner;
  */
 
 public class SongsDatabase {
-	private static BST songsPrimary = new BST();
+	public static BST songsPrimary = new BST();
 	private static BST songsSecondary = new BST();
 	private static final String filename = "songs.txt";
 	
@@ -72,7 +74,7 @@ public class SongsDatabase {
 		Scanner console = new Scanner(System.in);
 		System.out.print("Enter the title: ");
 		String ti = console.nextLine();
-		System.out.print("Enter the artit's name: ");
+		System.out.print("Enter the artist's name: ");
 		String ar = console.nextLine();
 		Song tempSong = new Song(ti, ar, " ", " ", " ", " ");
 		return tempSong;
@@ -111,6 +113,24 @@ public class SongsDatabase {
 	}
 	
 	/**
+	 * Searches a song object in the database
+	 * using the primary key
+	 */
+	public static boolean searchSong() {
+		Song songToSearch1 = tempSong();
+		if (songsPrimary.searchPrimary(songToSearch1.getTitle())) {
+			System.out.println("\n" + songToSearch1.getTitle() + " is in the database!\n");
+			System.out.println("Below is the record we found: \n");
+			System.out.println(songsPrimary.getRecentSearch());
+			return true;
+		} else {
+			System.out.println("\nWe cannot find " + songToSearch1.getTitle() + " in our database!\n");
+			return false;
+		}
+	}
+	
+	
+	/**
 	 * Searches for a song object in the database
 	 * using the secondary key
 	 */
@@ -141,70 +161,4 @@ public class SongsDatabase {
 		songsSecondary.display();
 		System.out.println("End of database!\n");
 	}
-	
-	public static void main(String[] args) throws IOException {
-		boolean loop = true;
-		System.out.println("Welcome to the JavaTunes Song Database!\n");
-		populateLibary();
-		while (loop) {
-			Scanner in = new Scanner(System.in);
-			System.out.println("Please select from one of the following options:\n");
-			System.out.println("A. Add a song\nD. Display songs\nR. Remove a song\nS. Search for a song\nX. Exit\n");
-			System.out.print("Enter your choice: ");
-			String choice = in.nextLine();
-			if (!choice.matches("(?i)A|D|R|X|S")) {
-				System.out.println("\nInvalid Selection!\n");
-
-			} else if (choice.matches("(?i)A")) {
-				System.out.println("\nAdding a song!\n");
-				addSong(in);
-			} else if (choice.matches("(?i)D")) {
-				System.out.println("\nDisplaying Song Database:\n");
-				boolean flag = true;
-				while (flag) {
-					System.out.println("Do you want to list products sorted by primary key or by secondary key?");
-					System.out.println("P. Primary key\nS. Secondary key\n");
-					System.out.print("Enter your desire option: ");
-					String option = in.nextLine();
-					if (!option.matches("(?i)P|S")) {
-						System.out.println("\nInvalid Selection!\n");
-					} else if (option.matches("(?i)P")) {
-						flag = false;
-						displayPrimary();
-					} else {
-						flag = false;
-						displaySecondary();
-					}
-				}
-			} else if (choice.matches("(?i)R")) {
-				System.out.println("\nRemoving a song!\n");
-				removeSong();
-			} else if (choice.matches("(?i)S")) {
-				System.out.println("\nSearching for a song!\n");
-				boolean dummy = true;
-				while (dummy) {
-					System.out.println("Do you want to search by primary key or by secondary key?");
-					System.out.println("P. Primary key\nS. Secondary key\n");
-					System.out.print("Enter your desire option: ");
-					String decision = in.nextLine();
-					if (!decision.matches("(?i)P|S")) {
-						System.out.println("\nInvalid Selection!\n");
-					} else if (decision.matches("(?i)P")) {
-						dummy = false;
-						System.out.println();
-						searchSongPrimary();
-					} else {
-						dummy = false;
-						System.out.println();
-						searchSongSecondary();
-					}
-				}
-			} else if (choice.matches("(?i)X")) {
-				loop = false;
-				System.out.println("\nGoodbye!");
-			}
-
-		
 	}
-	}
-}
